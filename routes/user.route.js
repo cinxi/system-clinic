@@ -1,6 +1,7 @@
 const express = require("express")
 const userController = require("../controller/user.controller.js")
 const adminController = require("../controller/admin.controller.js")
+
 const router = express.Router()
 
 //get
@@ -14,6 +15,13 @@ router.get("/logs", adminController.logs_view)
 
 //post
 router.post("/register-user", userController.save_user)
+router.post("/login-user", userController.login_user)
+router.post("/admindashboard", adminController.admindashboard_view)
 
 
-module.exports = router
+
+
+module.exports = router;
+
+
+
