@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Logs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #176B87;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #2C3E50;
+            color: white;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background: #1ABC9C;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #176B87;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filter input, .filter select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 48%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Logs</h1>
+    <nav>
+        <a href="adminDashboard">Dashboard</a>
+        <a href="UserManagement">User Management</a>
+        <a href="logs">Logs</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div class="main-content">
+        <div class="card">
+            <h2>User Activity Logs</h2>
+            <div class="filter">
+                <input type="text" placeholder="Search logs..." id="searchLog" />
+                <select id="filterDate">
+                    <option value="">All Dates</option>
+                    <option value="last24hours">Last 24 hours</option>
+                    <option value="last7days">Last 7 days</option>
+                    <option value="last30days">Last 30 days</option>
+                </select>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="logEntries">
+                    <tr>
+                        <td>2024-10-25 14:32</td>
+                        <td>JohnDoe</td>
+                        <td>Logged In</td>
+                        <td>IP: 192.168.1.1</td>
+                    </tr>
+                    <tr>
+                        <td>2024-10-25 15:01</td>
+                        <td>JaneDoe</td>
+                        <td>Updated Profile</td>
+                        <td>Changed email address.</td>
+                    </tr>
+                    <tr>
+                        <td>2024-10-25 15:15</td>
+                        <td>Admin</td>
+                        <td>Archived User</td>
+                        <td>Archived user ID: 45</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 Your Company Name
+</footer>
+
+<script>
+    // Placeholder for search/filter functionality
+    document.getElementById('searchLog').addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#logEntries tr');
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(query) ? '' : 'none';
+        });
+    });
+
+    document.getElementById('filterDate').addEventListener('change', function() {
+        // Placeholder for date filter functionality
+        console.log(this.value);
+    });
+</script>
+
+</body>
+</html>

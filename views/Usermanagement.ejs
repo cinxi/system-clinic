@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - User Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background: #176B87;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #176B87;
+            color: white;
+        }
+        .btn {
+            background: #176B87;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #145d6c;
+        }
+        .btn-danger {
+            background: #e74c3c;
+        }
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>User Management</h1>
+    <nav>
+        <a href="adminDashboard">Dashboard</a>
+        <a href="UserManagement">User Management</a>
+        <a href="logs">Logs</a>
+    </nav>
+</header>
+
+<div class="container">
+    <button class="btn" onclick="openUserForm()">Add User</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- User data will be dynamically inserted here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- User Form Modal -->
+<div id="userFormModal" style="display:none;">
+    <h2 id="formTitle">Add User</h2>
+    <form id="userForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <label for="role">Role:</label>
+        <input type="text" id="role" value="admin" readonly>
+        <button type="submit" class="btn">Save</button>
+    </form>
+</div>
+
+<script>
+    let users = []; // Array to hold user data
+    let currentUserId = null;
+
+    function openUserForm(user = null) {
+        document.getElementById('userFormModal').style.display = 'block';
+        if (user) {
+            document.getElementById('formTitle').innerText = 'Edit User';
+            document.getElementById('firstName').value = user.firstName;
+            document.getElementById('lastName').value = user.lastName;
+            document.getElementById('username').value = user.username;
+            currentUserId = user.id;
+        } else {
+            document.getElementById('formTitle').innerText = 'Add User';
+            document.getElementById('userForm').reset();
+            currentUserId = null;
+        }
+    }
+
+    function closeUserForm() {
+        document.getElementById('userFormModal').style.display = 'none';
+    }
+
+    document.getElementById('userForm').onsubmit = function(e) {
+        e.preventDefault();
+        const newUser = {
+            id: currentUserId || Date.now(),
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            username: document.getElementById('username').value,
+            role: 'admin',
+        };
+
+        if (currentUserId) {
+            users = users.map(user => user.id === currentUserId ? newUser : user);
+        } else {
+            users.push(newUser);
+        }
+
+        closeUserForm();
+        renderUserTable();
+    };
+
+    function renderUserTable() {
+        const userTableBody = document.getElementById('userTableBody');
+        userTableBody.innerHTML = '';
+
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.username}</td>
+                <td>${user.role}</td>
+                <td>
+                    <button class="btn" onclick="openUserForm(${JSON.stringify(user)})">Edit</button>
+                    <button class="btn btn-danger" onclick="archiveUser(${user.id})">Archive</button>
+                </td>
+            `;
+            userTableBody.appendChild(row);
+        });
+    }
+
+    function archiveUser(userId) {
+        users = users.filter(user => user.id !== userId);
+        renderUserTable();
+    }
+</script>
+
+</body>
+</html>
