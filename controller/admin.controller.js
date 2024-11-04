@@ -1,15 +1,30 @@
-const admindashboard_view = (req, res) => {
-    res.render("admindashboard")
+
+
+const home_view = (req, res) => {
+    res.render("admin/home")
 }
 
-const usermanagement_view = (req, res) => {
-    res.render("usermanagement")
+
+const addstaff_view = (req, res) => {
+    res.render("admin/addstaff")
 }
 
-const logs_view = (req, res) => {
-    res.render("logs")
+
+const view_view = (req, res) => {
+    res.render("admin/view")
 }
+
+const update_view = (req, res) => {
+    res.render("admin/update")
+}
+
 
 module.exports = {
-    admindashboard_view, usermanagement_view, logs_view
+    home_view,
+    addstaff_view,
+    view_view,
+    update_view
+
+
+
 }
