@@ -1,29 +1,30 @@
+//admin.controller.js
 
 
-const home_view = (req, res) => {
-    res.render("admin/home")
+const dashboard_view = (req, res) => {
+    res.render("admin/dashboard")
 }
 
 
-const addstaff_view = (req, res) => {
-    res.render("admin/addstaff")
+const usermanagement_view = (req, res) => {
+    res.render("admin/usermanagement")
 }
 
 
-const view_view = (req, res) => {
-    res.render("admin/view")
+const logs_view = (req, res) => {
+    res.render("admin/logs")
 }
 
-const update_view = (req, res) => {
-    res.render("admin/update")
-}
+
+
+
 
 
 module.exports = {
-    home_view,
-    addstaff_view,
-    view_view,
-    update_view
+   
+    dashboard_view,
+    usermanagement_view,
+    logs_view
 
 
 

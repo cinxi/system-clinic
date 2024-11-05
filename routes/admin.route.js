@@ -1,13 +1,16 @@
+//admin.route.js
 
 const express = require("express")
 const admin_Controller = require("../controller/admin.controller.js")
-
 const router = express.Router()
+
+
+
  
 //get
-router.get("/home", admin_Controller.home_view)  
-router.get("/addstaff", admin_Controller.addstaff_view)
-router.get("/view", admin_Controller.view_view)
-router.get("/update", admin_Controller.update_view)
+
+router.get("/dashboard", admin_Controller.dashboard_view)
+router.get("/usermanagement", admin_Controller.usermanagement_view)
+router.get("/logs", admin_Controller.logs_view)
 
 module.exports = router

@@ -1,0 +1,44 @@
+body {
+    background-color: #f4f8fb; /* Light background for a calming effect */
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px; /* Set a fixed width for the card */
+}
+
+h2 {
+    color: #2a9d8f; /* Clinic theme color */
+    text-align: center;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #264653; /* Darker shade for the button */
+    border: none;
+    
+}
+
+.btn-primary:hover {
+    background-color: #1d3557; /* Button hover effect */
+}
+
+
+.text-danger{
+    font-size: 12px;
+    font-weight: bold;
+}
