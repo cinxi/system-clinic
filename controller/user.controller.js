@@ -81,7 +81,7 @@ const login_user = (req, res) => {
                 const token = jwt.sign({ id: result.id, Username: result.Username }, "secretKey", { expiresIn: '1h' });
                 res.cookie("token", token); // Set the token as a cookie
                 console.log("Login successful, redirecting to dashboard.");
-                return res.render("admin/dashboard"); // Redirect to the dashboard
+                return res.render("admin/Admindashboard"); // Redirect to the dashboard
             } else {
                 console.log("Incorrect password");
                 return res.render("login", { message: "Incorrect password" });
