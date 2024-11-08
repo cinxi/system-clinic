@@ -1,4 +1,6 @@
-//user.controller.js
+
+
+// user.controller.js
 
 const { where } = require("sequelize");
 const models = require("../models");
@@ -13,6 +15,11 @@ const login_view = (req, res) => {
 const register_view = (req, res) => {
     const message = req.query.message;
     res.render("register", { message });
+};
+
+const addUser_view = (req, res) => {
+    const message = req.query.message;
+    res.render("addUser", { message });
 };
 
 const save_user = (req, res) => {
@@ -52,8 +59,6 @@ const save_user = (req, res) => {
         });
 };
 
-
-
 const login_user = (req, res) => {
     const user_data = {
         Username: req.body.Username,
@@ -77,11 +82,22 @@ const login_user = (req, res) => {
             console.log("Password match result:", passwordMatch);
 
             if (passwordMatch) {
-                // Password is correct, generate token
-                const token = jwt.sign({ id: result.id, Username: result.Username }, "secretKey", { expiresIn: '1h' });
+                // Password is correct, generate token with user role included
+                const token = jwt.sign({ id: result.id, Username: result.Username, role: result.User_Role }, "secretKey", { expiresIn: '1h' });
                 res.cookie("token", token); // Set the token as a cookie
-                console.log("Login successful, redirecting to dashboard.");
-                return res.render("admin/Admindashboard"); // Redirect to the dashboard
+                console.log("Login successful.");
+
+                // Redirect based on the user's role
+                if (result.User_Role === "clinic staff") {
+                    console.log("Redirecting to Clinic Staff dashboard.");
+                    return res.redirect("/staff/Staffdashboard"); // Redirect to Clinic Staff dashboard
+                } else if (result.User_Role === "admin") {
+                    console.log("Redirecting to Admin dashboard.");
+                    return res.redirect("/admin/Admindashboard"); // Redirect to Admin dashboard
+                } else {
+                    console.log("User role not recognized.");
+                    return res.render("login", { message: "User role not recognized" });
+                }
             } else {
                 console.log("Incorrect password");
                 return res.render("login", { message: "Incorrect password" });
@@ -98,4 +114,5 @@ module.exports = {
     register_view,
     save_user,
     login_user,
+    addUser_view,
 };
