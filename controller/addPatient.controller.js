@@ -4,9 +4,6 @@ const { where } = require("sequelize");
 const models = require("../models");
 
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-
-
 
 
 const Admindashboard_view = (req, res) => {
@@ -40,6 +37,7 @@ const logout = (req, res) => {
 
 // Add new patient
 const save_addPatient = (req, res) => {
+
     const patient_data = {
         Patient_FirstName: req.body.Patient_FirstName,
         Patient_LastName: req.body.Patient_LastName,
@@ -54,11 +52,13 @@ const save_addPatient = (req, res) => {
     models.Patient.create(patient_data)
         .then(result => {
             console.log("Patient added successfully:", result);
-            res.redirect("/patient?message=PatientAdded");
+            res.render("staff/patients");
+            // res.redirect("/patient?message=PatientAdded");
         })
         .catch(error => {
             console.error("Error adding patient:", error);
-            res.redirect("/patient?message=ServerError");
+            res.render("staff/patients");
+            // res.redirect("/patient?message=ServerError");
         });
 };
 

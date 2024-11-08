@@ -52,7 +52,7 @@ router.post("/login-user" , userController.login_user )
 
 
 
-router.post("/admin/addPatient", addPatientController.save_addPatient);
+router.post("/staff/addPatient", addPatientController.save_addPatient);
 // router.post("/staff/appointment", appointmentController.save_addAppointment);
 
 

@@ -71,10 +71,12 @@ const addUser = (req, res) => {
     // Step 2: Save data to database
     models.user.create(data_addUser)
         .then(result => {
+            console.log("New user added successfully:", result);
             res.render("admin/usermanagement");
         })
         .catch(error => {
-            console.error(error);  // Log the error for debugging
+            console.error("Error adding new user:", error);
+            // console.error(error);  // Log the error for debugging
             res.render("admin/usermanagement");
         });
 };
