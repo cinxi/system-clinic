@@ -1,5 +1,10 @@
 <!-- patients.ejs -->
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,39 +47,69 @@
     <main class="main-content p-4 w-100">
         <div class="sticky-header">
             <h2>Patients Record</h2>
+            <!-- Add New Patient Button -->
+            <button id="addPatientBtn" class="btn btn-primary">
+                <span class="material-symbols-outlined">add</span> Add New Patient
+            </button>
         </div>
+    
+        <!-- Patient Form Modal -->
 
-        <!-- Patient Form -->
-        <div class="patient-form">
-            <h3>Add New Patient</h3>
-            <form action="/staff/addPatient" method="POST">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="Patient_FirstName" required>
-
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="Patient_LastName" required>
-
-                <label for="gender">Gender:</label>
-                <select id="gender" name="Patient_Gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="DateofBirth" required>
-
-                <label for="contactNumber">Contact Number:</label>
-                <input type="tel" id="contactNumber" name="Patient_ContactNumber" required pattern="[0-9]{10}">
-
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="Patient_Address" required>
-
-                <button type="submit">Add Patient</button>
-            </form>
+        <div id="patientModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h3>Add New Patient</h3>
+                <form action="/staff/addPatient" method="POST">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="Patient_FirstName" required>
+    
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="Patient_LastName" required>
+    
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="Patient_Gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+    
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="DateofBirth" required>
+    
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="tel" id="contactNumber" name="Patient_ContactNumber" required pattern="[0-9]{10}">
+    
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="Patient_Address" required>
+    
+                    <button type="submit" class="btn btn-success">Add Patient</button>
+                </form>
+            </div>
         </div>
+    
+
+    </main>
+    
+    <script>
+        // JavaScript to handle modal display
+        document.getElementById("addPatientBtn").onclick = function() {
+            document.getElementById("patientModal").style.display = "block";
+        };
+    
+        document.getElementById("closeModal").onclick = function() {
+            document.getElementById("patientModal").style.display = "none";
+        };
+    
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("patientModal")) {
+                document.getElementById("patientModal").style.display = "none";
+            }
+        };
+    </script>
+    
 
         <!-- Patient Records Table -->
-        <div class="patient-table">
+
+         <div class="patient-table">
             <h3>Existing Patients</h3>
             <table>
                 <thead>
@@ -88,9 +123,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
+                </tbody>
             </table>
         </div>
+
+       
     </main>
 </body>
 </html>
