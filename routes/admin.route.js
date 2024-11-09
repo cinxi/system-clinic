@@ -48,9 +48,11 @@ router.get("/staff/patients", admin_Controller.patients_view);
 
 // (Admin) Add new user route
 router.post("/admin/addUser", admin_Controller.addUser);
-
-
 router.post("/staff/addPatient", addPatientController.patients_view )
+
+
+router.get('/admin/getTotalClinicStaff', admin_Controller.getTotalClinicStaff);
+
 
 
 module.exports = router; 

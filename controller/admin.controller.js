@@ -1,18 +1,49 @@
 
-//CONTROLLER
 
-//admin
+
 
 const models = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const Admindashboard_view = (req, res) => {
-    res.render("admin/Admindashboard");
+const user = require('../models/user'); 
+
+// Fetch users with 'clinic staff' role only
+const usermanagement_view = (req, res) => {
+    models.user.findAll({
+        where: {
+            User_Role: 'clinic staff' // Filter by clinic staff role
+        }
+    })
+    .then(users => {
+        res.render("admin/usermanagement", { users }); // Pass user data to the view
+    })
+    .catch(error => {
+        console.error("Error fetching clinic staff users:", error);
+        res.render("admin/usermanagement", { users: [] }); // Render with an empty array if there's an error
+    });
 };
 
-const usermanagement_view = (req, res) => {
-    res.render("admin/usermanagement");
+
+// Fetch total clinic staff users
+const getTotalClinicStaff = (req, res) => {
+    models.user.count({
+        where: {
+            User_Role: 'clinic staff'
+        }
+    })
+    .then(totalStaff => {
+        res.json({ totalStaff });
+    })
+    .catch(error => {
+        console.error('Error fetching total clinic staff:', error);
+        res.status(500).json({ error: 'Unable to fetch data' });
+    });
+};
+
+// Other controller functions remain unchanged...
+const Admindashboard_view = (req, res) => {
+    res.render("admin/Admindashboard");
 };
 
 const logs_view = (req, res) => {
@@ -36,13 +67,8 @@ const logout = (req, res) => {
     res.render("login");
 };
 
-
-
-
-
-// Add new user
+// Add new user function
 const addUser = (req, res) => {
-    // Step 1: Get data from request
     const data_addUser = {
         FirstName: req.body.firstName_data,
         LastName: req.body.lastName_data,
@@ -54,30 +80,17 @@ const addUser = (req, res) => {
         Password: req.body.Password_data,
     };
 
-    // models.user.create(data_addUser)
-    // .then(result => {
-    //     res.redirect("register?message=Success");
-    // })
-    // .catch(error => {
-    //     console.error("Database insertion error:", error);
-    //     res.redirect("register?message=ServerError");
-    // });
-    
     data_addUser.Password = bcrypt.hashSync(data_addUser.Password, 10);
     console.log("Hashed password:", data_addUser.Password);
 
-
-
-    // Step 2: Save data to database
     models.user.create(data_addUser)
         .then(result => {
             console.log("New user added successfully:", result);
-            res.render("admin/usermanagement");
+            res.redirect("/admin/usermanagement?message=UserAdded");
         })
         .catch(error => {
             console.error("Error adding new user:", error);
-            // console.error(error);  // Log the error for debugging
-            res.render("admin/usermanagement");
+            res.redirect("/admin/usermanagement?message=ServerError");
         });
 };
 
@@ -90,4 +103,5 @@ module.exports = {
     patients_view,
     logout,
     addUser,
+    getTotalClinicStaff
 };

@@ -21,7 +21,7 @@
     <aside class="sidebar">
         <div class="sidebar-header">
             <img src="/image/logo.png" alt="logo">
-            <h3>Bgry. Clinic Appointment</h3>
+            <h3>Brgy. Clinic Appointment</h3>
         </div>
         <ul class="sidebar-links">
             <h4>
@@ -44,44 +44,54 @@
         </div>
     </aside>
 
+
     <main class="main-content p-4 w-100">
         <div class="sticky-header">
-            <h2>Patients Record</h2>
-            <!-- Add New Patient Button -->
-            <button id="addPatientBtn" class="btn btn-primary">
-                <span class="material-symbols-outlined">add</span> Add New Patient
-            </button>
+            <h2>Patients Record</h2>       
+          
         </div>
-    
+    <br>
+
+           <!-- Add New Patient Button -->
+
+        <button id="addPatientBtn" class="btn btn-primary">
+            <span class="material-symbols-outlined">add</span> Add New Patient
+        </button>
         <!-- Patient Form Modal -->
 
         <div id="patientModal" class="modal">
             <div class="modal-content">
                 <span id="closeModal" class="close">&times;</span>
                 <h3>Add New Patient</h3>
-                <form action="/staff/addPatient" method="POST">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="Patient_FirstName" required>
-    
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="Patient_LastName" required>
-    
+
+                <form action="/staff/addPatient" method="POST"> 
+
+                    <br>
+
+                    <label for="firstName">Firstname:</label>
+                    <input type="text" id="firstName" name="Patient_FirstName" required>   <br>
+
+                    <label for="lastName">Lastname:</label>
+                    <input type="text" id="lastName" name="Patient_LastName" required>  <br>
+
                     <label for="gender">Gender:</label>
-                    <select id="gender" name="Patient_Gender" required>
+                    <select id="gender" name="Patient_Gender" required>  <br>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
+
+                    <br>
     
                     <label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" name="DateofBirth" required>
+                    <input type="date" id="dob" name="DateofBirth" required>  <br>
     
                     <label for="contactNumber">Contact Number:</label>
-                    <input type="tel" id="contactNumber" name="Patient_ContactNumber" required pattern="[0-9]{10}">
+                    <input type="tel" id="contactNumber" name="Patient_ContactNumber" required pattern="[0-9]{11}">  <br> 
     
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="Patient_Address" required>
+                    <input type="text" id="address" name="Patient_Address" required>  <br>
     
-                    <button type="submit" class="btn btn-success">Add Patient</button>
+                    <button type="submit" class="btn btn-success"> Save </button>
                 </form>
             </div>
         </div>
@@ -107,11 +117,13 @@
     </script>
     
 
+
+
         <!-- Patient Records Table -->
 
-         <div class="patient-table">
-            <h3>Existing Patients</h3>
-            <table>
+         <!-- <div class="patient-table">
+            
+            <table >
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -126,7 +138,7 @@
 
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
        
     </main>

@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    background:#161a2d;
+    background:#135f59;
     padding: 25px 20px;
     transition: all 0.4s ease;
 }
@@ -170,7 +170,7 @@ body {
 .sticky-header {
     position: sticky;
     top: 0;
-    background-color: #161a2d; /* Background color updated */
+    background-color: #135f59; 
     padding: 10px;
     border-bottom: 2px solid #ddd;
     z-index: 10;

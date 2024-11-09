@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    background:#161a2d;
+    background:#135f59;
     padding: 25px 20px;
     transition: all 0.4s ease;
 }
@@ -170,7 +170,7 @@ body {
 .sticky-header {
     position: sticky;
     top: 0;
-    background-color: #161a2d; /* Background color updated */
+    background-color: #135f59; 
     padding: 10px;
     border-bottom: 2px solid #ddd;
     z-index: 10;
@@ -258,4 +258,34 @@ body {
     .main-content h2, .main-content h4 {
         font-size: 1.25rem;
     }
+}
+
+
+
+/* styling for the dashboard cards */
+.dashboard-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #007bff;
 }

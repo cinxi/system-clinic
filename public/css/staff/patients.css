@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    background:#161a2d;
+    background:#135f59;
     padding: 25px 20px;
     transition: all 0.4s ease;
 }
@@ -170,7 +170,7 @@ body {
 .sticky-header {
     position: sticky;
     top: 0;
-    background-color: #161a2d; /* Background color updated */
+    background-color: #135f59; /* Background color updated */
     padding: 10px;
     border-bottom: 2px solid #ddd;
     z-index: 10;
@@ -264,6 +264,8 @@ body {
 
 
 
+
+
 /* Modal styling */
 .modal {
     display: none;
@@ -283,10 +285,11 @@ body {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
+    width: 60%;
+    max-width: 400px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .close {
@@ -303,3 +306,13 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+.btn-success{
+    background-color: #007bff;
+    color: white;
+    
+   
+}
+
+
