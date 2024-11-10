@@ -1,10 +1,3 @@
-<!-- patients.ejs -->
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patients Record</title>
     <!-- Linking Google Font Link For Icons --> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=groups" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=today" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap">
     <link rel="stylesheet" href="/css/staff/patients.css">
 </head>
 <body>
@@ -24,14 +15,11 @@
             <h3>Brgy. Clinic Appointment</h3>
         </div>
         <ul class="sidebar-links">
-            <h4>
-                <span>Main Menu</span>
-                <div class="menu-separator"></div>
-            </h4>
-            <li><a href="Staffdashboard"><span class="material-symbols-outlined">Dashboard</span>Dashboard</a></li>
-            <li><a href="appointment"><span class="material-symbols-outlined">today</span>Appointments</a></li>
-            <li><a href="patients"><span class="material-symbols-outlined">groups</span>Patients Record</a></li>
-            <li><a href="/login"><span class="material-symbols-outlined">Logout</span>Logout</a></li> 
+            <h4><span>Main Menu</span><div class="menu-separator"></div></h4>
+            <li><a href="Staffdashboard"><span class="material-icons">dashboard</span>Dashboard</a></li>
+            <li><a href="appointment"><span class="material-icons">today</span>Appointments</a></li>
+            <li><a href="patients"><span class="material-icons">groups</span>Patients Record</a></li>
+            <li><a href="/login"><span class="material-icons">logout</span>Logout</a></li> 
         </ul>
         <div class="user-account">
             <div class="user-profile">
@@ -43,62 +31,89 @@
             </div>
         </div>
     </aside>
-
-
+  
     <main class="main-content p-4 w-100">
         <div class="sticky-header">
             <h2>Patients Record</h2>       
-          
         </div>
-    <br>
+        <br>
 
-           <!-- Add New Patient Button -->
-
-        <button id="addPatientBtn" class="btn btn-primary">
-            <span class="material-symbols-outlined">add</span> Add New Patient
+        <!-- Add New Patient Button -->
+        <button id="addPatientBtn" class="btn btn-add">
+            <span class="material-icons">add</span> Add New Patient
         </button>
+        
         <!-- Patient Form Modal -->
-
         <div id="patientModal" class="modal">
             <div class="modal-content">
                 <span id="closeModal" class="close">&times;</span>
                 <h3>Add New Patient</h3>
-
                 <form action="/staff/addPatient" method="POST"> 
-
                     <br>
-
                     <label for="firstName">Firstname:</label>
-                    <input type="text" id="firstName" name="Patient_FirstName" required>   <br>
+                    <input type="text" id="firstName" name="Patient_FirstName" required><br>
 
                     <label for="lastName">Lastname:</label>
-                    <input type="text" id="lastName" name="Patient_LastName" required>  <br>
+                    <input type="text" id="lastName" name="Patient_LastName" required><br>
 
                     <label for="gender">Gender:</label>
-                    <select id="gender" name="Patient_Gender" required>  <br>
+                    <select id="gender" name="Patient_Gender" required><br>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                    </select>
+                    </select><br>
 
-                    <br>
-    
                     <label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" name="DateofBirth" required>  <br>
-    
+                    <input type="date" id="dob" name="DateofBirth" required><br>
+
                     <label for="contactNumber">Contact Number:</label>
-                    <input type="tel" id="contactNumber" name="Patient_ContactNumber" required pattern="[0-9]{11}">  <br> 
-    
+                    <input type="tel" id="contactNumber" name="Patient_ContactNumber" required pattern="[0-9]{11}"><br> 
+
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="Patient_Address" required>  <br>
-    
+                    <input type="text" id="address" name="Patient_Address" required><br>
+
                     <button type="submit" class="btn btn-success"> Save </button>
                 </form>
             </div>
         </div>
     
-
+        <!-- Patient Records Table -->
+        <div class="patient-table">
+            <div class="table-responsive">
+                <table class="reports-table">
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Contact Number</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% patients.forEach(patient => { %>
+                            <tr>
+                                <td><%= patient.Patient_ID %></td>
+                                <td><%= patient.Patient_FirstName %></td>
+                                <td><%= patient.Patient_LastName %></td>
+                                <td><%= patient.Patient_Gender %></td>
+                                <td><%= patient.DateofBirth %></td>
+                                <td><%= patient.Patient_ContactNumber %></td>
+                                <td><%= patient.Patient_Address %></td>
+                                <td>
+                                    <button class="btn btn-edit">Edit</button>
+                                    <button class="btn btn-danger">Archive</button>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
-    
+
     <script>
         // JavaScript to handle modal display
         document.getElementById("addPatientBtn").onclick = function() {
@@ -115,32 +130,5 @@
             }
         };
     </script>
-    
-
-
-
-        <!-- Patient Records Table -->
-
-         <!-- <div class="patient-table">
-            
-            <table >
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Gender</th>
-                        <th>Date of Birth</th>
-                        <th>Contact Number</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div> -->
-
-       
-    </main>
 </body>
 </html>

@@ -2,6 +2,8 @@
 //MODELS
 //user.js
 
+//MAO NI TINOODD
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
       Users_ID: {

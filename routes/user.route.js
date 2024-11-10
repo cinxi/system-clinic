@@ -53,7 +53,9 @@ router.post("/login-user" , userController.login_user )
 
 
 router.post("/staff/addPatient", addPatientController.save_addPatient);
+router.get("/staff/patient", addPatientController.patients_view);
 // router.post("/staff/appointment", appointmentController.save_addAppointment);
+
 
 
 
