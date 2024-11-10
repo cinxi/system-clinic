@@ -55,6 +55,7 @@
                 <h3>Total Patients</h3>
                 <div class="stat-number" id="totalPatients">
                     <!-- The value will be dynamically populated by the backend -->
+                     
                     <span>Loading...</span>
                 </div>
             </div>
@@ -63,7 +64,7 @@
 
     <script>
         // Fetch the total number of patients from the backend
-        fetch('/staff/getTotalPatients') // Assuming you have a route for fetching this data
+        fetch('/staff/getTotalPatients') 
             .then(response => response.json())
             .then(data => {
                 document.getElementById('totalPatients').innerText = data.totalPatients;

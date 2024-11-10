@@ -25,6 +25,8 @@
 // module.exports = router
 
 
+
+
 const express = require("express");
 const admin_Controller = require("../controller/admin.controller.js");
 const addPatientController = require("../controller/addPatient.controller.js");
@@ -41,8 +43,18 @@ router.get("/staff/Staffdashboard", admin_Controller.Staffdashboard_view);
 router.get("/staff/appointment", admin_Controller.appointment_view);
 router.get("/staff/patients", addPatientController.patients_view);
 
+
+// (Admin) Add new user
+router.post("/admin/addUser", admin_Controller.addUser);
+
+
 // Add Patient Route
+router.post("/staff/addPatient", addPatientController.patients_view )
+
+
 router.post("/staff/addPatient", addPatientController.save_addPatient);
+
+
 
 
 //e get ang total sa staff

@@ -259,3 +259,85 @@ body {
         font-size: 1.25rem;
     }
 }
+
+
+
+/* Appointment Form Styling */
+.appointment-form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.appointment-form h3 {
+    color: #135f59;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.appointment-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.appointment-form label {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.appointment-form input,
+.appointment-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.appointment-form button[type="submit"] {
+    background-color: #135f59;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.appointment-form button[type="submit"]:hover {
+    background-color: #0e4b46;
+}
+
+/* Appointment List Table */
+.appointments-list h3 {
+    color: #135f59;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.appointments-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.appointments-list th, 
+.appointments-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.appointments-list th {
+    background-color: #161a2d;
+    color: #fff;
+}
+
+.appointments-list tr:hover {
+    background-color: #f1f1f1;
+}
