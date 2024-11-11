@@ -391,3 +391,57 @@ form button:hover {
     font-size: x-small;
     color: darkgray;
 }
+
+
+
+
+
+
+/* Styles for Search Container */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.search-container label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-right: 10px;
+}
+
+#searchInput {
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 250px;
+}
+
+
+/* Styles for Search Container with Icon */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.search-container .search-icon {
+    position: absolute;
+    left: 10px;
+    color: #888;
+    font-size: 1.25rem;
+}
+
+#searchInput {
+    padding: 8px 8px 8px 35px; /* Padding adjusted for icon */
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 250px;
+}
+
+

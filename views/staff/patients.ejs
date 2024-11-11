@@ -32,17 +32,27 @@
         </div>
     </aside>
   
+    
     <main class="main-content p-4 w-100">
         <div class="sticky-header">
             <h2>Patients Record</h2>       
         </div>
         <br>
 
+  
         <!-- Add New Patient Button -->
         <button id="addPatientBtn" class="btn btn-add">
             <span class="material-icons">add</span> Add New Patient
         </button>
-        
+
+            
+    <!-- Add Search Field -->
+    <div class="search-container">
+        <span class="material-icons search-icon">search</span>
+        <input type="text" id="searchInput" placeholder="Search">
+    </div>
+    
+  
         <!-- Patient Form Modal -->
         <div id="patientModal" class="modal">
             <div class="modal-content">
@@ -79,46 +89,54 @@
          
             </div>
         </div>
-    
-        <!-- Patient Records Table -->
-        <div class="patient-table">
-            <div class="table-responsive">
-                <table class="reports-table">
-                    <thead>
-                        <tr>
-                            <th>Patient ID</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Gender</th>
-                            <th>Date of Birth</th>
-                            <th>Contact Number</th>
-                            <th>Address</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% patients.forEach(patient => { %>
-                            <tr>
-                                <td><%= patient.Patient_ID %></td>
-                                <td><%= patient.Patient_FirstName %></td>
-                                <td><%= patient.Patient_LastName %></td>
-                                <td><%= patient.Patient_Gender %></td>
-                                <td><%= patient.DateofBirth %></td>
-                                <td><%= patient.Patient_ContactNumber %></td>
-                                <td><%= patient.Patient_Address %></td>
-                                <td>
-                                    <button class="btn btn-edit">Edit</button>
-                                    <button class="btn btn-danger">Archive</button>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
-            </div>
+
+ 
+
+<!-- Patient Records Table -->
+<div class="patient-table">
+    <div class="table-responsive">
+        <table class="reports-table">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="patientTableBody">
+                <% patients.forEach(patient => { %>
+                    <tr>
+                        <td><%= patient.Patient_ID %></td>
+                        <td><%= patient.Patient_FirstName %></td>
+                        <td><%= patient.Patient_LastName %></td>
+                        <td><%= patient.Patient_Gender %></td>
+                        <td><%= patient.DateofBirth %></td>
+                        <td><%= patient.Patient_ContactNumber %></td>
+                        <td><%= patient.Patient_Address %></td>
+                        <td>
+                            <button class="btn btn-edit">Edit</button>
+                            <button class="btn btn-danger">Archive</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
         </div>
     </main>
 
+
+
     <script>
+
         // JavaScript to handle modal display
         document.getElementById("addPatientBtn").onclick = function() {
             document.getElementById("patientModal").style.display = "block";
@@ -133,6 +151,27 @@
                 document.getElementById("patientModal").style.display = "none";
             }
         };
+
+        
+     
+        //inig search
+
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll("#patientTableBody tr");
+
+    rows.forEach((row) => {
+        const cells = row.querySelectorAll("td");
+        const match = Array.from(cells).some((cell) =>
+            cell.textContent.toLowerCase().includes(filter)
+        );
+        row.style.display = match ? "" : "none";
+    });
+});
+
     </script>
+
+
+
 </body>
 </html>

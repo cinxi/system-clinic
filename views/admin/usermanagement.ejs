@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="/css/admin/usermanagement.css">
 </head>
@@ -45,6 +47,15 @@
         <button id="addUserBtn" class="btn btn-add">
             <span class="material-symbols-outlined">add</span> Add New User
         </button>
+        
+
+                  
+   <!-- Add Search Field -->
+<div class="search-container">
+    <span class="material-icons search-icon">search</span>
+    <input type="text" id="searchInput" placeholder="Search">
+</div>
+
 
         <!-- User Modal -->
         <div id="userModal" class="modal">
@@ -101,68 +112,70 @@
             </div>
         </div>
 
-        <!-- User Table -->
-        <div class="table-responsive">
-            <table class="reports-table">
-                <thead >
-                    <tr>
-                        <th>ID</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Birthdate</th>
-                        <th>Gender</th>
-                        <th>Contact Number</th>
-                        <th>Role</th>
-                        <th>Username</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <% users.forEach(user => { %>
-                        <tr>
-                            <td><%= user.Users_ID %></td>
-                            <td><%= user.FirstName %></td>
-                            <td><%= user.LastName %></td>
-                            <td><%= user.Users_Birthdate %></td>
-                            <td><%= user.Users_Gender %></td>
-                            <td><%= user.ContactNumber %></td>
-                            <td><%= user.User_Role %></td>
-                            <td><%= user.Username %></td>
-                            <td>
-                                <button class="btn btn-edit" >Edit</button>
-                                <button class="btn btn-danger">Archive</button>
-                            </td>
-                        </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-        </div>
-    </main>
-
-    <script>
-        // JavaScript for modal functionality
-        document.getElementById("addUserBtn").onclick = function() {
-            document.getElementById("userModal").style.display = "block";
-        };
-        document.getElementById("closeModal").onclick = function() {
-            document.getElementById("userModal").style.display = "none";
-        };
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("userModal")) {
-                document.getElementById("userModal").style.display = "none";
-            }
-        };
-
-        function editUser(userId) {
-            alert(`Edit user with ID: ${userId}`);
-        }
-
-        function archiveUser(userId) {
-            alert(`Archive user with ID: ${userId}`);
-        }
-
+       <!-- User Table -->
+<div class="table-responsive">
+    <table class="reports-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Birthdate</th>
+                <th>Gender</th>
+                <th>Contact Number</th>
+                <th>Role</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         
-    </script>
-</body>
-</html>
+        <tbody id="userTableBody"> <!-- Add ID here for JavaScript to target -->
+            <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user.Users_ID %></td>
+                    <td><%= user.FirstName %></td>
+                    <td><%= user.LastName %></td>
+                    <td><%= user.Users_Birthdate %></td>
+                    <td><%= user.Users_Gender %></td>
+                    <td><%= user.ContactNumber %></td>
+                    <td><%= user.User_Role %></td>
+                    <td><%= user.Username %></td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-danger">Archive</button>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    // Modal functionality
+    document.getElementById("addUserBtn").onclick = function() {
+        document.getElementById("userModal").style.display = "block";
+    };
+    document.getElementById("closeModal").onclick = function() {
+        document.getElementById("userModal").style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("userModal")) {
+            document.getElementById("userModal").style.display = "none";
+        }
+    };
+
+    // Search functionality for filtering user table rows
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll("#userTableBody tr");
+
+        rows.forEach((row) => {
+            const cells = row.querySelectorAll("td");
+            const match = Array.from(cells).some((cell) =>
+                cell.textContent.toLowerCase().includes(filter)
+            );
+            row.style.display = match ? "" : "none";
+        });
+    });
+</script>
