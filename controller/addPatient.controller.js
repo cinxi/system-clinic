@@ -36,6 +36,7 @@ const patients_view = (req, res) => {
         });
 };
 
+
 // Logout Function
 const logout = (req, res) => {
     res.cookie("token", "", { maxAge: 1000 });

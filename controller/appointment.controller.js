@@ -2,12 +2,32 @@
 
 const models = require("../models");
 
-
-// Views
-const appointment_view = (req, res) => {
+// Fetch patients and render the appointment view
+const appointment_view = async (req, res) => {
     const message = req.query.message || null;
-    res.render("staff/appointment", { message });
+
+    try {
+        // Fetch patients' first and last names along with their IDs
+        const patients = await models.Patient.findAll({
+            attributes: ['Patient_ID', 'Patient_FirstName', 'Patient_LastName']
+        });
+
+        // Format the data for dropdown
+        const patientList = patients.map(patient => ({
+            id: patient.Patient_ID,
+            name: `${patient.Patient_FirstName} ${patient.Patient_LastName}`
+        }));
+
+        res.render("staff/appointment", { message, patientList });
+    } catch (error) {
+        console.error("Error fetching patients:", error);
+        res.render("staff/appointment", { message, patientList: [], error: "Failed to load patients" });
+    }
 };
+
+
+
+
 
 // Add new appointment
 const save_addAppointment = (req, res) => {
@@ -35,5 +55,6 @@ const save_addAppointment = (req, res) => {
 
 module.exports = {
     appointment_view,
-    save_addAppointment
+    save_addAppointment,
+    
 };

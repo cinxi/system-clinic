@@ -25,11 +25,10 @@
 // module.exports = router
 
 
-
-
 const express = require("express");
 const admin_Controller = require("../controller/admin.controller.js");
 const addPatientController = require("../controller/addPatient.controller.js");
+const appointmentController = require("../controller/appointment.controller.js");
 
 const router = express.Router();
 
@@ -40,29 +39,22 @@ router.get("/admin/logs", admin_Controller.logs_view);
 
 // Staff Routes
 router.get("/staff/Staffdashboard", admin_Controller.Staffdashboard_view);
-router.get("/staff/appointment", admin_Controller.appointment_view);
+router.get("/staff/appointment", appointmentController.appointment_view); // Updated to use appointmentController for /staff/appointment
 router.get("/staff/patients", addPatientController.patients_view);
 
+// Add new appointment
+router.post("/staff/appointment", appointmentController.save_addAppointment);
 
 // (Admin) Add new user
 router.post("/admin/addUser", admin_Controller.addUser);
 
-
 // Add Patient Route
-router.post("/staff/addPatient", addPatientController.patients_view )
-
-
 router.post("/staff/addPatient", addPatientController.save_addPatient);
 
-
-
-
-//e get ang total sa staff
-router.get('/admin/getTotalClinicStaff', admin_Controller.getTotalClinicStaff);
-
-
+// Get total clinic staff
+router.get("/admin/getTotalClinicStaff", admin_Controller.getTotalClinicStaff);
 
 // Fetch total number of patients
-router.get('/staff/getTotalPatients', addPatientController.getTotalPatients);
+router.get("/staff/getTotalPatients", addPatientController.getTotalPatients);
 
 module.exports = router;
