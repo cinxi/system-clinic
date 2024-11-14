@@ -119,19 +119,18 @@
     <table class="reports-table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>User ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Birthdate</th>
                 <th>Gender</th>
                 <th>Contact Number</th>
-                <th>Role</th>
                 <th>Username</th>
                 <th>Actions</th>
             </tr>
         </thead>
         
-        <tbody id="userTableBody"> <!-- Add ID here for JavaScript to target -->
+        <tbody id="userTableBody"> 
             <% users.forEach(user => { %>
                 <tr>
                     <td><%= user.Users_ID %></td>
@@ -140,7 +139,7 @@
                     <td><%= user.Users_Birthdate %></td>
                     <td><%= user.Users_Gender %></td>
                     <td><%= user.ContactNumber %></td>
-                    <td><%= user.User_Role %></td>
+                 
                     <td><%= user.Username %></td>
                     <td>
                         <button class="btn btn-edit">Edit</button>

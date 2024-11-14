@@ -29,7 +29,7 @@ const express = require("express")
 const userController = require("../controller/user.controller.js")
 const addPatientController = require("../controller/addPatient.controller.js")
 
-const appointmentController = require("../controller/appointment.controller.js");  // Corrected typo
+const appointmentController = require("../controller/appointment.controller.js"); 
 
 const router = express.Router()
 
@@ -39,10 +39,9 @@ router.get("/login", userController.login_view   )
 router.get("/register", userController.register_view )
 
 router.get("/addUser", userController.addUser_view )
+
 router.get("/addPatient", addPatientController.patients_view )
-
-router.get("/saveappointment", appointmentController.appointment_view )
-
+router.get("/appointment", appointmentController.appointment_view )
 
 
 
@@ -51,10 +50,9 @@ router.post("/register-user" , userController.save_user )
 router.post("/login-user" , userController.login_user )
 
 
-
 router.post("/staff/addPatient", addPatientController.save_addPatient);
 router.get("/staff/patient", addPatientController.patients_view);
-// router.post("/staff/appointment", appointmentController.save_addAppointment);
+
 
 
 

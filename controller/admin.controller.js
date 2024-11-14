@@ -41,7 +41,7 @@ const getTotalClinicStaff = (req, res) => {
     });
 };
 
-// Other controller functions remain unchanged...
+// Other controller 
 const Admindashboard_view = (req, res) => {
     res.render("admin/Admindashboard");
 };

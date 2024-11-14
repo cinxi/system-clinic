@@ -416,6 +416,8 @@ form input, form select {
     font-size: small;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-bottom: 5px;
+    width: 100%;
  
 }
 

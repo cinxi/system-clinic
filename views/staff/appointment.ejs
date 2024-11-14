@@ -57,6 +57,9 @@
                     <div class="form-group">
                         <label for="patient_id">Patient Name:</label>
                         <select name="Patient_ID" id="patient_id" required>
+
+                            <option value="">Select Patient Name</option>
+
                             <% if (patientList && patientList.length > 0) { %>
                                 <% patientList.forEach(patient => { %>
                                     <option value="<%= patient.id %>"><%= patient.name %></option>
@@ -66,22 +69,36 @@
                             <% } %>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="users_id">Clinic Staff:</label>
                         <input type="number" name="User_ID" id="users_id" required>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="appointment_date">Appointment Date:</label>
                         <input type="date" name="Appointment_Date" id="appointment_date" required>
                     </div>
+
                     <div class="form-group">
                         <label for="appointment_time">Appointment Time:</label>
                         <input type="time" name="Appointment_Time" id="appointment_time" required>
                     </div>
+
                     <div class="form-group">
                         <label for="appointment_purpose">Appointment Purpose:</label>
                         <input type="text" name="Appointment_Purpose" id="appointment_purpose" required>
                     </div>
+
+
+                    <!-- <label for="Appointment_Status">Appointment Status:</label>
+                    <select name="Appointment_Status" required>
+
+                        <option value="">Select</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Completed">Cancelled</option>
+                        <option value="Completed">Completed</option>
+                    </select> -->
+
                     <button type="submit" class="btn btn-success">Add Appointment</button>
                 </form>
             </div>
@@ -93,12 +110,16 @@
             <table>
                 <thead>
                     <tr>
+
+                        <th>Appointment ID</th>
                         <th>Patient Name</th>
-                        <th>Staff Incharge</th>
+                        <!-- <th>Staff Incharge</th> -->
                         <th>Date</th>
                         <th>Time</th>
                         <th>Purpose</th>
                         <th>Status</th>
+                         <th>Actions</th>
+                        
                     </tr>
                 </thead>
             </table>
