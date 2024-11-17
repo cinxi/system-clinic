@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="/css/admin/dashboard.css"> <!-- Corrected the filename -->
 </head>
 <body>
+    <div class="header">
+        <div class="user-account">
+            <div class="user-profile">
+                <img src="/image/sabrina.png" alt="profile-img">
+                <div class="user-detail">
+                    <h3>Sabrina Carpenter</h3>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
     <aside class="sidebar">
         <div class="sidebar-header">
             <img src="/image/logo.png" alt="logo">
@@ -16,7 +27,7 @@
         </div>
         <ul class="sidebar-links">
             <h4>
-                <span>Main Menu</span>
+                <!-- <span>Main Menu</span> -->
                 <div class="menu-separator"></div>
             </h4>
             <li>
@@ -32,23 +43,15 @@
                 <a href="/login"><span class="material-symbols-outlined">Logout</span>Logout</a>
             </li> 
         </ul>
-        <div class="user-account">
-            <div class="user-profile">
-                <img src="/image/sabrina.png" alt="profile-img">
-                <div class="user-detail">
-                    <h3>Sabrina Carpenter</h3>
-                    <span>Admin</span>
-                </div>
-            </div>
-        </div>
+        
     </aside>
 
 
-    <main class="main-content p-4 w-100">
+    <main class="main-content">
         <div class="sticky-header">
             <h2>Welcome Admin!</h2>
         </div>
-        <br>
+        <!-- <br> -->
         
         <h2>Statistic</h2>
         
@@ -58,14 +61,11 @@
             <div class="card">
                 <h3> Clinic Staff</h3>
                 <div class="stat-number" id="totalStaffUsers">
-                    <!-- The value will be dynamically populated by the backend -->
                     <span>Loading...</span>
                 </div>
             </div>
         </div>
 
-
-        <!-- You can also add other stats or information here -->
     
     <script>
         // You can add JS to fetch data dynamically if needed
